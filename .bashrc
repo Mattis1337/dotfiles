@@ -6,6 +6,8 @@ export EDITOR="nvim"
 [[ $- != *i* ]] && return
 fastfetch
 
+source /etc/profile.d/openfoam-13.sh
+
 alias ll='ls -al'
 alias tmppkg='BUILDDIR=/tmp/makepkg makepkg' 
 alias gitauth='eval `ssh-agent` && ssh-add $HOME/.ssh/id_ed25519 && ssh-add $HOME/.ssh/sign_ed25519'

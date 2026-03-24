@@ -1,135 +1,97 @@
-// -*- mode: jsonc -*-
 {
-  // "layer": "top", // Waybar at top layer
-  // "position": "bottom", // Waybar position (top|bottom|left|right)
-  "height": 30, // Waybar height (to be removed for auto height)
-  // "width": 1280, // Waybar width
-  "spacing": 10, // Gaps between modules (4px)
-  // Choose the order of the modules
+  "layer": "top",
+  "position": "top",
+
   "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/mode",
-    "hyprland/scratchpad",
-    "custom/media",
-    "hyprland/window"
+    "custom/OS",
+    "hyprland/workspaces"
   ],
+
   "modules-center": [
-   
+    "custom/date-left",
+    "clock",
+    "custom/date-right"
   ],
+
   "modules-right": [
-    // "mpd",
-    // "idle_inhibitor",
-    "pulseaudio",
-    "network",
-    // "cpu",
-    // "memory",
-    // "temperature",
-    // "backlight",
-    // "keyboard-state",
-    // "sway/language",
+    "group/misc",
+    "group/volume",
+    "group/brightness",
     "battery",
-    "battery#bat2",
-    "clock"
-    // "tray"
+    "network",
+    "tray"
   ],
-  // Modules configuration
-  "hyprland/workspaces": {
-      "disable-scroll": false,
-      "all-outputs": true,
-      "warp-on-scroll": false
+
+  "custom/OS": {
+    "format": "󰣛"
   },
-  "keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": "{name} {icon}",
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
     "format-icons": {
-      "locked": "",
-      "unlocked": ""
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十",
+      "urgent": "",
+      "focused": "",
+      "default": ""
     }
   },
-  "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
-  },
-  "/scratchpad": {
-    "format": "{icon} {count}",
-    "show-empty": false,
-    "format-icons": [
-      "",
-      ""
-    ],
-    "tooltip": true,
-    "tooltip-format": "{app}: {title}"
-  },
-  "tray": {
-    // "icon-size": 21,
-    "spacing": 10
-  },
-  "clock": {
-    // "timezone": "America/New_York",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
-  },
-  "cpu": {
-    "format": "{usage}% ",
+
+  "custom/date-left": {
+    "exec": "date '+%a %d'",
+    "interval": 60,
     "tooltip": false
   },
-  "memory": {
-    "format": "{}% "
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "interval": 2,
+    "tooltip": false,
   },
-  "temperature": {
-    // "thermal-zone": 2,
-    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C {icon}",
-    "format": "{temperatureC}°C {icon}",
-    "format-icons": [
-      "",
-      "",
-      ""
-    ]
+
+  "custom/date-right": {
+    "exec": "date '+%b %Y'",
+    "interval": 60,
+    "tooltip": false
   },
-  "backlight": {
-    // "device": "acpi_video1",
-    "format": "{percent}% {icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
-  },
-  "battery": {
-    "states": {
-      // "good": 95,
-      "warning": 25,
-      "critical": 10
+
+  "group/misc": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "misc-modules",
+      "open-on-hover": true,
+      "closed-size": 22,
+      "transition-left-to-right": false
     },
-    "format": "<span font='12'>{icon}</span> {capacity}%",
-    "format-full": "<span font='12'>{icon}</span> {capacity}%",
-    "format-charging": "<span font='12'>󰂄</span>  {capacity}%",
-    "format-plugged": "<span font='12'></span>  {capacity}%",
-    "format-warning": "<span font='12' color'yellow'>󰁼</span>  {capacity}%",
-    "format-critical": "<span font='12' color='red'>󰁼</span>  {capacity}%",
-    
-    // "format-alt": "{time} {icon}",
-    // "format-good": "", // An empty format will hide the module
-    // "format-full": "",
-    "format-icons": [
-      "󰂎",
-      "󰁼",
-      "󰁿",
-      "󰂁",
-      "󰁹"
+    "modules": [
+      "custom/separator",
+      "power-profiles-daemon",
+      "cpu",
+      "memory",
     ]
   },
-  "battery#bat2": {
-    "bat": "BAT2"
+
+  "custom/separator": {
+    "format": "|",
+    "tooltip": false
   },
+
+  "custom/notification": {
+    "format": "",
+    "tooltip": false
+  },
+
   "power-profiles-daemon": {
     "format": "{icon}",
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -141,48 +103,97 @@
       "power-saver": ""
     }
   },
-  "network": {
-    // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "  {essid}",
-    "format-ethernet": "󰈀   Ethernet",
-    "tooltip-format": "{ifname} via {gwaddr} 󰈀",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+
+  "group/volume": {
+    "orientation": "horizontal",
+    "drawer": {
+      "open-on-hover": true,
+      "transition-duration": 400,
+      "transition-left-to-right": false,
+      "closed-size": 22,
+      "length": 140,
+      "children-class": "volume-drawer"
+    },
+    "modules": [
+      "custom/volicon",
+      "pulseaudio/slider"
+    ]
   },
+
+  "custom/volicon": {
+    "format": "󰋋",
+    "tooltip": false
+  },
+
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "{icon}    {volume}%",
-    // "format-bluetooth": "{volume}% {icon} {format_source}",
-    // "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": "  {volume}%",
-    "format-source": "",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    },
-    "on-click": "pavucontrol"
+    "format": "{icon} {volume}%",
+    "format-muted": "󰟎",
+    "format-icons": ["󰋋"],
+    "scroll-step": 5
   },
-  "custom/media": {
-    "format": "{icon} {}",
-    "return-type": "json",
-    "max-length": 40,
-    "format-icons": {
-      "spotify": "",
-      "default": "🎜"
+
+  "group/brightness": {
+    "orientation": "horizontal",
+    "drawer": {
+      "open-on-hover": true,
+      "transition-duration": 400,
+      "transition-left-to-right": false,
+      "closed-size": 22,
+      "length": 140,
+      "children-class": "brightness-drawer"
     },
-    "escape": true,
-    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-    // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    "modules": [
+      "custom/brighticon",
+      "backlight/slider"
+    ]
+  },
+
+  "custom/brighticon": {
+    "format": "☀"
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "☀ {percent}%",
+    "scroll-step": 2
+  },
+
+  "cpu": {
+    "interval": 10,
+    "format":"{usage}%  ",
+    "max-length": 10,
+  },
+
+  "memory": {
+    "interval": 30,
+    "format": " {}%  ",
+    "max-length": 10
+  },
+
+  "battery": {
+    "bat": "BAT0",
+    "interval": 10,
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ⚡{icon}",
+    "format-plugged": "{capacity}% ⚡{icon}",  // Optional: same as charging if you want
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "tooltip-format": "{capacity}% – {timeTo}"
+  },
+
+  "network": {
+    "interface": "wlp1s0",   // Change to your WiFi interface: wlp3s0, wlp2s0, etc.
+                            // Run `ip link` or `nmcli device` to find it
+    "interval": 30,
+    "format-wifi": "{essid} {icon} ",
+    "format-linked": "Linked (no IP)",
+    "format-disconnected": "Disconnected",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],  // Weak → Strong (Nerd Font)
+    "tooltip-format": "IP: {ipaddr}\nSignal: {signalStrength}% ({frequency} GHz)\nInterface: {ifname}",
+    "on-click": "wezterm start -- nmtui"
   }
+
 }
