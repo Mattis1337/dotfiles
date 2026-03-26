@@ -6,7 +6,7 @@ export EDITOR="nvim"
 [[ $- != *i* ]] && return
 fastfetch
 
-source /etc/profile.d/openfoam-13.sh
+source $HOME/build/repos/OpenFOAM-v2412/etc/bashrc
 
 alias ll='ls -al'
 alias tmppkg='BUILDDIR=/tmp/makepkg makepkg' 
