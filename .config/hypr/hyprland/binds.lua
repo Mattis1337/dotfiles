@@ -6,7 +6,7 @@ require("hyprland.variables")
 hl.bind("SUPER + CONTROL + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
 
 -- Applications
-hl.bind("SUPER + R", hl.dsp.exec_cmd(terminal))
+hl.bind("SUPER + R", hl.dsp.exec_cmd(menu))
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager))
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(terminal))
