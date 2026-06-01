@@ -12,6 +12,9 @@ hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager))
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind("SUPER + Q", hl.dsp.exec_cmd("hyprctl kill"))
 
+-- Screenshot
+hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
+
 -- Volume and media control
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"))
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"))
