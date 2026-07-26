@@ -7,5 +7,4 @@ require("hyprland.envs")
 require("hyprland.looks")
 require("hyprland.rules")
 require("hyprland.system")
-
 --
